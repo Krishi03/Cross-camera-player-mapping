@@ -1,0 +1,38 @@
+# ByteTrack and YOLO/ML project .gitignore
+
+# ByteTrack submodules (if you want to ignore the repo itself, uncomment below)
+# ByteTrack/
+
+# Model weights
+*.pt
+*.pth
+*.onnx
+
+
+# Results directories
+bytetrack_results_*/
+
+# Python virtual environment
+venv/
+ENV/
+.env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Misc
+*.bak
+*.swp 
