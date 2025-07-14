@@ -1,5 +1,36 @@
 # Cross-Camera Player Detection and Tracking
 
+## Procedure, Ideology, and Approach
+
+### **Ideology & Motivation**
+The goal of this project is to reliably identify and track the same players across two different camera views in sports videos. This is a challenging problem due to differences in viewpoint, occlusions, and similar player appearances. The solution aims to provide a modular, reproducible pipeline that can be adapted for sports analytics, multi-camera surveillance, or research.
+
+### **Approach**
+The approach is based on a multi-stage pipeline:
+
+1. **Detection:**
+   - Use a fine-tuned YOLOv11 model to detect players in each frame of both videos.
+   - Save detection results in both JSON (for analysis) and ByteTrack format (for tracking).
+
+2. **Tracking:**
+   - Use ByteTrack to assign consistent track IDs to each detected player within each video, ensuring that the same player keeps the same ID across frames in a single view.
+
+3. **Cross-Camera Matching:**
+   - For each player track in both videos, extract appearance features (e.g., color histograms).
+   - Use the Hungarian algorithm to match tracks between the two videos based on feature similarity, assigning a global ID to each player.
+
+4. **Visualization:**
+   - Draw bounding boxes and global player IDs on both videos, so the same player is marked with the same ID in both views.
+
+### **Procedure**
+1. **Prepare your videos and YOLO weights.**
+2. **Run detection on both videos to generate detection files.**
+3. **Run ByteTrack to generate tracking results for each video.**
+4. **Run the matching script to align player IDs across cameras.**
+5. **Visualize the results to verify consistent player IDs.**
+
+---
+
 ## Overview
 
 This project provides a pipeline for **detecting, tracking, and matching players across two synchronized videos** (e.g., broadcast and tacticam) using deep learning and computer vision. It leverages **YOLOv8** for detection, **ByteTrack** for multi-object tracking, and custom logic for cross-camera player ID matching and visualization.
